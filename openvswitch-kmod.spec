@@ -20,7 +20,8 @@ URL: http://www.openvswitch.org/
 Source0: http://openvswitch.org/releases/openvswitch-%{version}%{?snap_gitsha}.tar.gz
 Source11: openvswitch-kmod-kernel-version
 
-Patch0: ipv6_checksum.patch
+Patch0: no_depmod.patch
+Patch1: ipv6_checksum.patch
 
 %global kernel_version %{expand:%(cat %{SOURCE11} 2>/dev/null)}
 
@@ -66,6 +67,7 @@ kernel %{kernel_version}.%{_arch} for the %{_target_cpu} family of processors.
 %prep
 %setup -q -T -b 0 -n %{kmodname}-%{version}%{?snap_gitsha}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %if 0%{?snap_gitsha:1}
