@@ -17,7 +17,7 @@ Group: System Environment/Kernel
 # The entire source code is ASL 2.0 except datapath/ which is GPLv2
 License: GPLv2
 URL: http://www.openvswitch.org/
-Source0: http://openvswitch.org/releases/%{name}-%{version}%{?snap_gitsha}.tar.gz
+Source0: http://openvswitch.org/releases/openvswitch-%{version}%{?snap_gitsha}.tar.gz
 Source11: openvswitch-kmod-kernel-version
 
 Patch1: ipv6_checksum.patch
