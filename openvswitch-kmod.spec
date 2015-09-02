@@ -20,7 +20,7 @@ URL: http://www.openvswitch.org/
 Source0: http://openvswitch.org/releases/openvswitch-%{version}%{?snap_gitsha}.tar.gz
 Source11: openvswitch-kmod-kernel-version
 
-Patch1: ipv6_checksum.patch
+Patch0: ipv6_checksum.patch
 
 %global kernel_version %{expand:%(cat %{SOURCE11} 2>/dev/null)}
 
