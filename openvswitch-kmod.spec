@@ -1,8 +1,8 @@
 # snapshot is the date YYYYMMDD of the snapshot
 # snap_git is the 8 git sha digits of the last commit
 # Use ovs-snapshot.sh to create the tarball.
-#% define snapshot .git20150730
-#% define snap_gitsha -git72bfa562
+%define snapshot .git20150903
+%define snap_gitsha -gitaffdc921
 
 %global kmodinstdir_prefix  /lib/modules/
 %global kmodname openvswitch
@@ -21,7 +21,6 @@ Source0: http://openvswitch.org/releases/openvswitch-%{version}%{?snap_gitsha}.t
 Source11: openvswitch-kmod-kernel-version
 
 Patch0: no_depmod.patch
-Patch1: ipv6_checksum.patch
 
 %global kernel_version %{expand:%(cat %{SOURCE11} 2>/dev/null)}
 
@@ -55,6 +54,10 @@ Requires(postun): /usr/sbin/depmod
 Requires:         kernel-uname-r = %{kernel_version}.%{_arch}
 BuildRequires:    kernel-devel-uname-r = %{kernel_version}.%{_arch}
 
+%if 0%{?snap_gitsha:1}
+BuildRequires: autoconf automake libtool
+%endif
+
 %post          -n kmod-openvswitch-%{kernel_version}.%{_arch}
 /usr/sbin/depmod -aeF /boot/System.map-%{kernel_version}.%{_arch} %{kernel_version}.%{_arch} > /dev/null || :
 %postun        -n kmod-openvswitch-%{kernel_version}.%{_arch}
@@ -67,7 +70,6 @@ kernel %{kernel_version}.%{_arch} for the %{_target_cpu} family of processors.
 %prep
 %setup -q -T -b 0 -n %{kmodname}-%{version}%{?snap_gitsha}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %if 0%{?snap_gitsha:1}
