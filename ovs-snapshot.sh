@@ -6,7 +6,7 @@
 echo "Warning: for unreleased code, the original version might be
 the unreleased next one.  In that case, downgrade to the previous
 released version so that we have: stable + fixes."
-basever="2.4.0"
+basever="2.5.0"
 
 echo "Using version ${basever} while the code has"
 grep "bugs@openvswitch.org" configure.ac

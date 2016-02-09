@@ -8,4 +8,4 @@ spectool -g ${SPEC}
 mock --dnf --buildsrpm \
      --spec=${SPEC} \
      --sources=${SOURCES} \
-     --root fedora-22-x86_64 \
+     --root fedora-23-x86_64 \

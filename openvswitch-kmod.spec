@@ -1,15 +1,16 @@
 # snapshot is the date YYYYMMDD of the snapshot
 # snap_git is the 8 git sha digits of the last commit
 # Use ovs-snapshot.sh to create the tarball.
-%define snapshot .git20150903
-%define snap_gitsha -gitaffdc921
+%define snapshot .git20160209
+%define snap_gitsha -git61c4e394
+%define debug_package %{nil}
 
 %global kmodinstdir_prefix  /lib/modules/
 %global kmodname openvswitch
 %global kmodinstdir_postfix /updates/%{kmodname}
 
 Name: openvswitch-kmod
-Version: 2.4.0
+Version: 2.5.0
 Release: 1%{?snapshot}%{?dist}
 
 Summary: Open vSwitch Kernel Modules
